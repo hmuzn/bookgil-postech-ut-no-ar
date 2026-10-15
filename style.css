@@ -25,12 +25,3 @@
 .map-nav-bottom{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;display:grid;gap:7px;margin-top:auto}
 .map-nav-bottom p{margin:0}.direction-instruction{font-size:17px;line-height:1.35;font-weight:850;color:var(--navy)}
 .map-nav-bottom .primary{margin-top:8px}
-.start-qr-maker{margin:12px 0 22px;padding:16px;border:1px solid #dbe6f6;border-radius:18px;background:#f5f9ff;color:#495b75}
-.start-qr-maker p{margin:0 0 12px;line-height:1.5}
-.start-qr-dialog{width:min(92vw,420px);max-height:90vh;overflow:auto;border:0;border-radius:24px;padding:24px;color:#183052}
-.start-qr-dialog::backdrop{background:rgba(9,22,43,.55)}
-.start-qr-dialog>p{line-height:1.5}
-.start-qr-code{display:flex;justify-content:center;margin:18px auto}
-.start-qr-code svg{width:min(65vw,260px);height:auto;max-height:260px;background:white}
-.start-qr-dialog input{width:100%;padding:10px;border:1px solid #dbe6f6;border-radius:10px;font-size:12px}
-@media print{body>.app-shell,body>dialog:not(#startQrDialog){display:none!important}#startQrDialog{display:block!important;position:static!important;width:100%;max-height:none;box-shadow:none}#closeStartQr,#copyStartQr,#printStartQr{display:none!important}.start-qr-code svg{width:65mm;max-height:none}}
