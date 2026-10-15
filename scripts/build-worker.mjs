@@ -1,0 +1,19 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = path.resolve(import.meta.dirname, '..');
+const files = ['index.html', 'style.css', 'motion.js', 'routing.js', 'app.js', 'catalog-search.js', 'assets/postech-3f-stacks.png'];
+const assets = Object.fromEntries(files.map(file => {
+  const binary = file.endsWith('.png');
+  return [`/${file}`, {binary, body: fs.readFileSync(path.join(root, file), binary ? 'base64' : 'utf8')}];
+}));
+const out = path.join(root, 'dist');
+fs.mkdirSync(path.join(out, 'server'), {recursive: true});
+fs.mkdirSync(path.join(out, '.openai'), {recursive: true});
+fs.writeFileSync(path.join(out, '.openai/hosting.json'), JSON.stringify({project_id: 'appgprj_6ad08cadd0948191817177155d343286'}, null, 2));
+const catalog = fs.readFileSync(path.join(root, 'catalog-api.mjs'), 'utf8').replaceAll('export ', '');
+const worker = fs.readFileSync(path.join(root, 'worker.mjs'), 'utf8')
+  .replace("import {searchCatalog} from './catalog-api.mjs';", '')
+  .replaceAll('export ', '');
+fs.writeFileSync(path.join(out, 'server/index.js'),
+  `${catalog}\n${worker}\nexport default createHandler(${JSON.stringify(assets)});\n`);

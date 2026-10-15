@@ -6,7 +6,7 @@ const verifiedBooks=[
   {id:'alma991003350079503286',title:'(도널드 노먼의) UX 디자인 특강 : 복잡한 세상의 디자인',author:'Donald A. Norman',callNumber:'T14 .N673 2018',location:'박태준학술정보관 단행본3층',catalogUrl:'https://postech.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma991003350079503286&context=L&vid=82POSTECH_INST:82POSTECH&lang=ko',verified:true,pin:null}
 ];
 const existing=saved.books||[];
-const initialBooks=verifiedBooks.map(b=>({...b,pin:existing.find(x=>x.id===b.id)?.pin||null}));
+const initialBooks=[...new Map([...verifiedBooks,...existing].map(b=>[b.id,b])).values()];
 const allowedIds=new Set(initialBooks.map(b=>b.id));
 const state={books:initialBooks,cart:(saved.cart||[]).filter(id=>allowedIds.has(id)),selected:(saved.selected||[]).filter(id=>allowedIds.has(id)),start:null,current:null,reference:null,calibrationMode:false,heading:null,displayHeading:null,compassAccuracy:null,headingSource:null,mapOffset:null,orientationListening:false,motionListening:false,motionReady:false,walkCalibrating:false,walkSteps:0,stepUnit:null,stepsSinceAnchor:0,stepDetector:BookgilMotion.createStepDetector(),route:[],index:0,status:{},view:'search',stream:null,pinBook:null,tempPin:null,busy:false};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
