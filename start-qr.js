@@ -1,5 +1,7 @@
 /* A field operator pins one verified physical marker. Visitors scan its printed QR to place the blue dot. */
-const startParam = new URLSearchParams(location.search).get('start');
+const startQuery = new URLSearchParams(location.search);
+const startParam = startQuery.get('start');
+const operatorMode = startQuery.get('operator') === '1';
 
 function validStartPoint(value) {
   if (!/^\d{1,3}(?:\.\d{1,2})?,\d{1,3}(?:\.\d{1,2})?$/.test(value || '')) return null;
@@ -60,4 +62,8 @@ if (startParam !== null) {
   } else {
     $('searchStatus').textContent = '시작 QR의 위치를 확인할 수 없습니다. 현장 운영자에게 알려주세요.';
   }
+} else if (operatorMode) {
+  show('setup');
+  document.querySelector('#setupView .subcopy').textContent = 'QR을 붙일 실제 통로 위치에 서서 지도에 그 지점을 표시하세요. 아래 버튼으로 QR을 인쇄해 바로 그 장소에 붙입니다.';
+  $('startLabel').textContent = '현장에서 확인한 QR 설치 위치를 지도에 표시하세요.';
 }
