@@ -23,7 +23,7 @@ export function createHandler(assets) {
       const asset = assets[path];
       if (!asset) return new Response('Not found', {status: 404});
       const ext = path.slice(path.lastIndexOf('.'));
-      const headers = {'Content-Type': CONTENT_TYPES[ext] || 'application/octet-stream', 'Cache-Control': path === '/index.html' ? 'no-cache' : 'public, max-age=3600'};
+      const headers = {'Content-Type': CONTENT_TYPES[ext] || 'application/octet-stream', 'Cache-Control': path.endsWith('.png') ? 'public, max-age=3600' : 'no-cache'};
       return new Response(asset.binary ? Uint8Array.from(atob(asset.body), char => char.charCodeAt(0)) : asset.body, {headers});
     }
   };

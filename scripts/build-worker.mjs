@@ -1,12 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 
 const root = path.resolve(import.meta.dirname, '..');
-const files = ['index.html', 'style.css', 'motion.js', 'routing.js', 'app.js', 'catalog-search.js', 'assets/postech-3f-stacks.png'];
+const files = ['index.html', 'style.css', 'motion.js', 'routing.js', 'app.js', 'catalog-search.js', 'vendor/qrcode.js', 'start-qr.js', 'assets/postech-3f-stacks.png'];
 const assets = Object.fromEntries(files.map(file => {
   const binary = file.endsWith('.png');
   return [`/${file}`, {binary, body: fs.readFileSync(path.join(root, file), binary ? 'base64' : 'utf8')}];
 }));
+const version = createHash('sha256').update(files.map(file => assets[`/${file}`].body).join('')).digest('hex').slice(0, 10);
+assets['/index.html'].body = assets['/index.html'].body.replace(
+  /((?:href|src)="\.\/(?:style\.css|motion\.js|routing\.js|app\.js|catalog-search\.js|vendor\/qrcode\.js|start-qr\.js))"/g,
+  `$1?v=${version}"`
+);
 const out = path.join(root, 'dist');
 fs.mkdirSync(path.join(out, 'server'), {recursive: true});
 fs.mkdirSync(path.join(out, '.openai'), {recursive: true});
