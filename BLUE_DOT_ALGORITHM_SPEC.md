@@ -1,7 +1,7 @@
 # 책길 블루도트 계산 알고리즘 명세
 
-> 대상: POSTECH 박태준학술정보관 3층 현장 UT 웹앱, 배포 버전 6  
-> 구현 파일: `motion.js`, `app.js`  
+> 대상: POSTECH 박태준학술정보관 3층 현장 UT 웹앱, AR 제거 지도 경로 버전  
+> 구현 파일: `motion.js`, `routing.js`, `app.js`  
 > 작성 기준: 2026-10-15 현재 코드
 
 ## 1. 목적과 범위
@@ -98,7 +98,7 @@ xₜ₊₁ = clamp( xₜ + sin(θₜ) × k/a, 0, 100 )
 yₜ₊₁ = clamp( yₜ − cos(θₜ) × k,   0, 100 )
 ```
 
-`clamp`는 점이 이미지 바깥으로 나가지 않도록 제한한다. 계산 후 지도 속 블루도트와 블루도트에서 목표 책 위치까지의 직선 방향선을 다시 그린다. 지도 아래 목표 서가의 상대 방향 문구도 새 `Pₜ₊₁`에서 다시 계산한다.
+`clamp`는 점이 이미지 바깥으로 나가지 않도록 제한한다. 계산 후 블루도트를 걸을 수 있는 격자 칸에 맞추고 A* 통로 경로를 다시 계산한다. 차단 구역으로 추정되면 좌표 갱신을 멈춘다. 지도 아래 방향 문구는 목표 서가가 아니라 경로의 다음 지점을 기준으로 계산한다.
 
 식의 `sin`과 `cos`를 계산할 때는 `θₜ`를 도에서 라디안으로 변환한다.
 
@@ -130,8 +130,12 @@ blueDot = reference
 onEachDetectedStep:
     if navigationIsActive and headingIsAvailable:
         mapHeading = smoothedHeading - offset
-        blueDot = advance(blueDot, mapHeading, stepUnit)
-        redrawBlueDotAndDirectionText()
+        candidate = advance(blueDot, mapHeading, stepUnit)
+        if candidate is outside walkable area: pauseAndRequestPositionCheck()
+        else:
+            blueDot = snapToWalkableCell(candidate)
+            route = astar(blueDot, nearestWalkableCell(bookPin))
+            redrawRouteAndNextWaypointDirection(route)
 
 onUserTapCurrentPosition(point):
     blueDot = point
@@ -140,7 +144,7 @@ onUserTapCurrentPosition(point):
 
 ## 9. 정확도와 구현 경계
 
-현재 구현은 **관성 센서 기반 추측 항법(PDR)의 간단한 UT 프로토타입**이다. 절대 위치 측정, 서가·벽 충돌 방지, 복도 그래프에 맞춘 위치 보정, 카메라 영상 기반 공간 정합, UWB/BLE/Wi-Fi 실내 측위는 구현하지 않았다. 따라서 점이 통로 밖이나 서가를 가로질러 움직일 수 있으며, 지도 방향선과 방향 문구는 목표 서가의 **직선 방향**을 표시한다.
+현재 구현은 **관성 센서 기반 추측 항법(PDR)의 간단한 UT 프로토타입**이다. `routing.js`의 도면 기반 격자는 중앙 개방부와 검정색 구조물 선을 피하는 A* 경로를 계산한다. 걸음 위치가 막힌 칸으로 추정되면 갱신을 멈춘다. 그러나 절대 위치 측정, 현장 측량, 도면에 없는 장애물 감지, UWB/BLE/Wi-Fi 실내 측위는 구현하지 않았다. 파란 경로는 현장 미검증 후보이며 실제 통로와 다를 수 있다.
 
 현장 UT에서 기록해야 할 값은 최소한 다음과 같다.
 
@@ -152,3 +156,10 @@ onUserTapCurrentPosition(point):
 | 재보정 빈도 | 참가자가 지도를 다시 눌러야 했던 횟수 |
 
 실제 iPhone과 POSTECH 3층에서 위 수치를 측정하기 전에는 미터 단위 정확도나 자동 길찾기 성능을 보증할 수 없다.
+
+## 10. 통로 탐색 추가 명세
+
+- 원본 도면 1580×1370픽셀을 8픽셀 격자로 나눈다. 중앙 개방부, 건물 외부, 그룹스터디룸 구역은 수작업 마스크로 제외한다. 주변 5픽셀 이내의 검정색 구조물 픽셀은 차단한다. 연결되지 않은 작은 흰 공간은 제거한다.
+- 출발점은 28픽셀 이내, 책 핀은 48픽셀 이내의 통로 칸으로 맞춘다. 후보가 없거나 폐쇄 구역에 찍히면 경로를 제공하지 않는다.
+- A*는 8방향 인접 칸을 탐색하고 양옆이 막힌 대각선 이동은 금지한다. 이동 비용은 격자 픽셀 거리다. 방향 문구는 경로의 약 36픽셀 앞 지점을 기준으로 한다.
+- 이 격자는 인쇄 도면을 읽은 결과이며 실제 통행 가능 여부는 현장 답사로 검증해야 한다.
