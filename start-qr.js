@@ -55,15 +55,19 @@ if (startParam !== null) {
     state.reference = null;
     state.mapOffset = null;
     state.stepUnit = null;
-    show('setup');
+    show('search');
+    const banner = document.createElement('p');
+    banner.className = 'qr-start-banner';
+    banner.textContent = '✓ 시작 QR 위치를 인식했어요. 이제 찾을 책을 검색해 카트에 담으세요.';
+    document.querySelector('#searchView .hero').after(banner);
     document.querySelector('#setupView .subcopy').textContent = '시작 QR 앞에 서 있는지 확인하세요. 눈앞에 보이는 기준 지점을 지도에 표시한 뒤, 휴대폰 윗부분을 그 지점으로 겨누고 방향을 맞추세요.';
     document.querySelector('.start-qr-maker').hidden = true;
-    $('startLabel').textContent = '시작 QR 위치에 블루닷을 놓았어요. 실제 QR 앞에 서 있는지 확인하세요.';
   } else {
     $('searchStatus').textContent = '시작 QR의 위치를 확인할 수 없습니다. 현장 운영자에게 알려주세요.';
   }
 } else if (operatorMode) {
+  document.body.classList.add('operator-mode');
   show('setup');
-  document.querySelector('#setupView .subcopy').textContent = 'QR을 붙일 실제 통로 위치에 서서 지도에 그 지점을 표시하세요. 아래 버튼으로 QR을 인쇄해 바로 그 장소에 붙입니다.';
+  document.querySelector('#setupView .subcopy').textContent = '진행자 단계입니다. QR을 붙일 실제 통로에 서서 지도에 그 지점을 표시하고 QR을 만드세요. 방향·걸음 보정은 참가자가 QR을 찍은 뒤 각자 진행합니다.';
   $('startLabel').textContent = '현장에서 확인한 QR 설치 위치를 지도에 표시하세요.';
 }
