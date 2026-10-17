@@ -26,9 +26,13 @@
 .map-nav-bottom p{margin:0}.direction-instruction{font-size:17px;line-height:1.35;font-weight:850;color:var(--navy)}
 .map-nav-bottom .primary{margin-top:8px}
 .start-qr-maker{margin:12px 0 22px;padding:16px;border:1px solid #dbe6f6;border-radius:18px;background:#f5f9ff;color:#495b75}
+.start-qr-maker{display:none}
+.operator-mode .start-qr-maker{display:block}
 .start-qr-maker p{margin:0 0 12px;line-height:1.5}
 .qr-start-banner{margin:16px 0;padding:14px 16px;border:1px solid #b7d6c7;border-radius:14px;background:#ebf8ef;color:#185b36;font-weight:750;line-height:1.5}
 .operator-mode #tabbar,.operator-mode #setupView .back-btn,.operator-mode #setupView .calibration-controls,.operator-mode #setupView #calibrationStatus,.operator-mode #setupView #walkCalibrate,.operator-mode #setupView #walkStatus,.operator-mode #setupView .notice,.operator-mode #setupView .bottom-action{display:none!important}
+.participant-intro-mode #tabbar,.participant-intro-mode #setupView .back-btn,.participant-intro-mode #setupView .calibration-controls,.participant-intro-mode #setupView #calibrationStatus,.participant-intro-mode #setupView #walkCalibrate,.participant-intro-mode #setupView #walkStatus,.participant-intro-mode #setupView .notice,.participant-intro-mode #setupView .bottom-action{display:none!important}
+#beginBookSearch{margin:16px 0 24px}
 .start-qr-dialog{width:min(92vw,420px);max-height:90vh;overflow:auto;border:0;border-radius:24px;padding:24px;color:#183052}
 .start-qr-dialog::backdrop{background:rgba(9,22,43,.55)}
 .start-qr-dialog>p{line-height:1.5}

@@ -55,13 +55,23 @@ if (startParam !== null) {
     state.reference = null;
     state.mapOffset = null;
     state.stepUnit = null;
-    show('search');
-    const banner = document.createElement('p');
-    banner.className = 'qr-start-banner';
-    banner.textContent = '✓ 시작 QR 위치를 인식했어요. 이제 찾을 책을 검색해 카트에 담으세요.';
-    document.querySelector('#searchView .hero').after(banner);
-    document.querySelector('#setupView .subcopy').textContent = '시작 QR 앞에 서 있는지 확인하세요. 눈앞에 보이는 기준 지점을 지도에 표시한 뒤, 휴대폰 윗부분을 그 지점으로 겨누고 방향을 맞추세요.';
+    document.body.classList.add('participant-intro-mode');
+    show('setup');
+    document.querySelector('#setupView .subcopy').textContent = '시작 QR 위치가 지도에 표시됐어요. 실제 QR 앞에 서 있는지 확인한 뒤 책 검색을 시작하세요.';
     document.querySelector('.start-qr-maker').hidden = true;
+    const begin = document.createElement('button');
+    begin.id = 'beginBookSearch';
+    begin.type = 'button';
+    begin.className = 'primary full';
+    begin.textContent = '책 검색 시작 →';
+    begin.onclick = () => {
+      document.body.classList.remove('participant-intro-mode');
+      begin.remove();
+      document.querySelector('#setupView .subcopy').textContent = 'QR에서 출발 위치를 불러왔어요. ② 눈앞에 보이는 기준 지점을 지도에 표시하고, ③ 방향과 ④ 걸음을 보정하세요.';
+      show('search');
+    };
+    $('startLabel').after(begin);
+    $('startLabel').textContent = '파란 점이 QR에 저장된 출발 위치입니다.';
   } else {
     $('searchStatus').textContent = '시작 QR의 위치를 확인할 수 없습니다. 현장 운영자에게 알려주세요.';
   }

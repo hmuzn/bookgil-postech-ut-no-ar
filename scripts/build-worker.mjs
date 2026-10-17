@@ -16,7 +16,8 @@ assets['/index.html'].body = assets['/index.html'].body.replace(
 const out = path.join(root, 'dist');
 fs.mkdirSync(path.join(out, 'server'), {recursive: true});
 fs.mkdirSync(path.join(out, '.openai'), {recursive: true});
-fs.writeFileSync(path.join(out, '.openai/hosting.json'), JSON.stringify({project_id: 'appgprj_6ad08cadd0948191817177155d343286'}, null, 2));
+const hosting = JSON.parse(fs.readFileSync(path.join(root, '.openai/hosting.json'), 'utf8'));
+fs.writeFileSync(path.join(out, '.openai/hosting.json'), JSON.stringify(hosting, null, 2));
 const catalog = fs.readFileSync(path.join(root, 'catalog-api.mjs'), 'utf8').replaceAll('export ', '');
 const worker = fs.readFileSync(path.join(root, 'worker.mjs'), 'utf8')
   .replace("import {searchCatalog} from './catalog-api.mjs';", '')
