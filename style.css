@@ -33,6 +33,19 @@
 .operator-mode #tabbar,.operator-mode #setupView .back-btn,.operator-mode #setupView .calibration-controls,.operator-mode #setupView #calibrationStatus,.operator-mode #setupView #walkCalibrate,.operator-mode #setupView #walkStatus,.operator-mode #setupView .notice,.operator-mode #setupView .bottom-action{display:none!important}
 .participant-intro-mode #tabbar,.participant-intro-mode #setupView .back-btn,.participant-intro-mode #setupView .calibration-controls,.participant-intro-mode #setupView #calibrationStatus,.participant-intro-mode #setupView #walkCalibrate,.participant-intro-mode #setupView #walkStatus,.participant-intro-mode #setupView .notice,.participant-intro-mode #setupView .bottom-action{display:none!important}
 #beginBookSearch{margin:16px 0 24px}
+.pin-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}
+.pin-modes button{border:1px solid #d7e2ed;border-radius:9px;background:#f4f7fc;color:#596b85;font-size:11px;font-weight:800;min-height:40px;padding:7px 4px}
+.pin-modes button.selected{border-color:#2866e6;background:#e9f1ff;color:#245bc2}
+.map-marker.shelf{background:#3c506e;font-size:15px;border-radius:8px}
+.map-marker.access-inner{background:#139b83;font-size:12px}
+.map-marker.access-outer{background:#a569cf;font-size:12px}
+.operator-books{margin:18px 0 12px;padding:15px;border:1px solid #dbe6f6;border-radius:16px;background:#fff}
+.operator-books>strong{display:block;font-size:14px;color:#173459}
+.operator-books>p{font-size:11px;color:#65758e;line-height:1.5;margin:7px 0 12px}
+.operator-book{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #e4eaf1;padding:11px 0}
+.operator-book span{font-size:12px;font-weight:750;line-height:1.4;min-width:0}
+.operator-book small{display:block;color:#687d9a;font-size:10px;margin-top:3px}
+.operator-book button{flex:none;border:1px solid #cbdaf1;background:#eef4ff;border-radius:9px;color:#2866e6;font-size:11px;font-weight:800;padding:8px}
 .start-qr-dialog{width:min(92vw,420px);max-height:90vh;overflow:auto;border:0;border-radius:24px;padding:24px;color:#183052}
 .start-qr-dialog::backdrop{background:rgba(9,22,43,.55)}
 .start-qr-dialog>p{line-height:1.5}
