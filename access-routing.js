@@ -20,6 +20,25 @@
     return snapped && snapped.distance <= 8 ? snapped.point : null;
   }
 
+  function suggestAccess(pin){
+    if(!validPoint(pin) || !routing.walkablePoint(pin)) return null;
+    const candidates=[];
+    for(let radius=40;radius<=120;radius+=8){
+      for(let angle=0;angle<360;angle+=15){
+        const radians=angle*Math.PI/180;
+        const point={x:pin.x+Math.cos(radians)*radius/15.8,y:pin.y+Math.sin(radians)*radius/13.7};
+        const snapped=corridor(point);
+        if(!snapped) continue;
+        const distance=pixelDistance(pin,snapped);
+        if(distance<35 || distance>MAX_ACCESS_DISTANCE) continue;
+        candidates.push({point:snapped,distance});
+      }
+      if(candidates.length) break;
+    }
+    candidates.sort((a,b)=>a.distance-b.distance);
+    return candidates[0]?.point || null;
+  }
+
   function accessPoints(book){
     if(!validPoint(book?.pin) || !routing.walkablePoint(book.pin)) return [];
     return SIDES.flatMap(side=>{
@@ -40,7 +59,7 @@
     return options[0] || null;
   }
 
-  const api = {accessPoints,corridor,pixelDistance,route};
+  const api = {accessPoints,corridor,suggestAccess,pixelDistance,route};
   root.BookgilAccess = api;
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

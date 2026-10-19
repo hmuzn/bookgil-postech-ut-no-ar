@@ -21,5 +21,10 @@ assert.ok(fromOutside.path.every(routing.walkablePoint));
 assert.equal(access.route(point(790,900),{pin:shelf.pin}),null,'an old shelf-only pin cannot be routed');
 assert.equal(access.corridor(point(760,620)),null,'the central opening is not a corridor');
 assert.equal(access.route(point(790,900),{pin:shelf.pin,approaches:{inner:point(600,450)}}),null,'a distant aisle cannot be registered as shelf access');
+const suggested = access.suggestAccess(shelf.pin);
+assert.ok(suggested,'the map should suggest a nearby corridor from a shelf point');
+assert.equal(access.accessPoints({pin:shelf.pin,approaches:{inner:suggested}}).length,1);
+assert.ok(access.pixelDistance(shelf.pin,suggested)>=35);
+assert.equal(access.suggestAccess(point(760,620)),null,'no corridor may be suggested from the central opening');
 
 console.log('Shelf access routing checks passed');
