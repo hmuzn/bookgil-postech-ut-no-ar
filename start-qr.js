@@ -113,7 +113,7 @@ if (startParam !== null) {
     begin.onclick = () => {
       document.body.classList.remove('participant-intro-mode');
       begin.remove();
-      document.querySelector('#setupView .subcopy').textContent = 'QR에서 출발 위치를 불러왔어요. ② 눈앞에 보이는 기준 지점을 지도에 표시하고, ③ 방향과 ④ 걸음을 보정하세요.';
+      document.querySelector('#setupView .subcopy').textContent = 'QR에서 출발점을 불러왔어요. 실제 위치와 맞으면 바로 지도 길안내를 시작하세요. 자동 블루닷 이동은 선택해서 설정할 수 있어요.';
       show('search');
     };
     $('startLabel').after(begin);
@@ -130,6 +130,6 @@ if (startParam !== null) {
   document.querySelector('.start-qr-maker').before(operatorBooks);
   renderOperatorBooks();
   $('pinDialog').addEventListener('close', renderOperatorBooks);
-  document.querySelector('#setupView .subcopy').textContent = '진행자 단계입니다. QR을 붙일 실제 통로에 서서 지도에 그 지점을 표시하고 QR을 만드세요. 방향·걸음 보정은 참가자가 QR을 찍은 뒤 각자 진행합니다.';
+  document.querySelector('#setupView .subcopy').textContent = '진행자 단계입니다. QR을 붙일 실제 통로에 서서 지도에 그 지점을 표시하고 QR을 만드세요. 참가자는 QR을 찍고 책을 골라 바로 지도 경로를 볼 수 있습니다. 자동 블루닷 이동은 선택해서 설정합니다.';
   $('startLabel').textContent = '현장에서 확인한 QR 설치 위치를 지도에 표시하세요.';
 }

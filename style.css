@@ -53,3 +53,7 @@
 .start-qr-code svg{width:min(65vw,260px);height:auto;max-height:260px;background:white}
 .start-qr-dialog input{width:100%;padding:10px;border:1px solid #dbe6f6;border-radius:10px;font-size:12px}
 @media print{body>.app-shell,body>dialog:not(#startQrDialog){display:none!important}#startQrDialog{display:block!important;position:static!important;width:100%;max-height:none;box-shadow:none}#closeStartQr,#copyStartQr,#printStartQr{display:none!important}.start-qr-code svg{width:65mm;max-height:none}}
+
+.tracking-setup{margin:16px 0;border:1px solid #dbe6f6;border-radius:16px;padding:14px;background:#f7faff}.tracking-setup summary{cursor:pointer;font-weight:750;color:#173354}.tracking-setup summary span{display:block;font-size:12px;font-weight:500;color:#697b91;margin-top:3px}.tracking-setup[open] summary{margin-bottom:12px}.operator-mode .tracking-setup,.participant-intro-mode .tracking-setup{display:none!important}
+
+.operator-entry{font-size:13px;color:#6d7e91;margin:8px 0 18px}.operator-entry a{color:#2866e6;font-weight:700}
