@@ -57,3 +57,5 @@
 .tracking-setup{margin:16px 0;border:1px solid #dbe6f6;border-radius:16px;padding:14px;background:#f7faff}.tracking-setup summary{cursor:pointer;font-weight:750;color:#173354}.tracking-setup summary span{display:block;font-size:12px;font-weight:500;color:#697b91;margin-top:3px}.tracking-setup[open] summary{margin-bottom:12px}.operator-mode .tracking-setup,.participant-intro-mode .tracking-setup{display:none!important}
 
 .operator-entry{font-size:13px;color:#6d7e91;margin:8px 0 18px}.operator-entry a{color:#2866e6;font-weight:700}
+
+.pin-modes{grid-template-columns:repeat(2,1fr)}.pin-modes button{font-size:13px;min-height:46px}.alternate-access{margin:10px 0 16px;color:#62758d;font-size:13px}.alternate-access summary{cursor:pointer}.alternate-access button{margin-top:10px}

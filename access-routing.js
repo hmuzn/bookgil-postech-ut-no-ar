@@ -2,7 +2,7 @@
 (function(root){
   const routing = root.BookgilRouting || (typeof require === 'function' ? require('./routing.js') : null);
   const SIDES = ['inner', 'outer'];
-  const LABELS = {inner:'안쪽', outer:'바깥쪽'};
+  const LABELS = {inner:'책 앞', outer:'추가'};
   const MAX_ACCESS_DISTANCE = 160; // Printed-map pixels, not metres.
 
   function validPoint(point){
