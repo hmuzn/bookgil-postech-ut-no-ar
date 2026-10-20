@@ -49,7 +49,7 @@ html,body{background:#e8e9e6;color:var(--ink)}
 .map-marker{box-shadow:0 3px 10px #1b221b35}.map-marker.current{background:#272c24;border:5px solid #e3fb73;color:transparent;font-size:0}.map-marker.destination{background:#d3f72e;color:#1b2113}.map-marker.reference{background:#333a2c}.map-marker.shelf{background:#272c24}.map-marker.access-inner{background:#adcc2c;color:#1b2110}.map-marker.access-outer{background:#889a50;color:#fff}
 .map-zoom-btn{background:#f2f4ed;border:1px solid #e2e6d9;color:#4b5440;border-radius:999px;padding:9px 12px}
 .tracking-setup{background:#f3f5ed;border:1px solid #e6e9dd;border-radius:17px}.tracking-setup summary{color:#2a3025}.tracking-setup summary span{color:#858b7b}
-.map-navigation{background:#fbfcf8;padding:16px 18px calc(24px + var(--safe-bottom));gap:10px}
+.map-navigation{background:#fbfcf8;padding:16px 18px calc(112px + var(--safe-bottom));gap:10px}
 .map-nav-header>div{color:#292d25}.map-nav-header strong{background:var(--accent);color:#232a17}
 .map-nav-destination{border:0;border-radius:0;background:transparent;padding:8px 3px 5px}.map-nav-destination small{color:#767d71}.map-nav-destination h2{font-size:22px;letter-spacing:-.8px;margin:4px 0}.map-nav-destination p{color:#858b82}
 .map-nav-content{flex:1;display:flex;flex-direction:column;min-height:330px;border:0;border-radius:22px;background:#f5f7f1;padding:13px}
@@ -57,6 +57,7 @@ html,body{background:#e8e9e6;color:var(--ink)}
 #navMap.real-map{max-height:none;min-height:260px;border:0;background:#f5f7f1}.map-caption{color:#848a7e;font-size:10px}
 .map-nav-bottom{margin:1px 0 0;border:0;border-radius:23px;background:#242622;color:#fff;padding:18px;gap:8px;box-shadow:0 15px 35px #15191322}
 .map-nav-bottom .direction-instruction{color:#fff;font-size:18px}.map-nav-bottom .small-status{color:#c4c9bd}.map-nav-bottom .primary{background:var(--accent);border-color:var(--accent);color:#20251b}
+#navView #arrived{position:fixed;z-index:8;left:50%;bottom:calc(16px + var(--safe-bottom));transform:translateX(-50%);width:min(390px,calc(100vw - 36px));margin:0;box-shadow:0 0 0 8px #fbfcf8,0 12px 32px #171d1538}
 .immersive{background:#171a16}.camera-stage{background:linear-gradient(145deg,#1c241d,#3b4a2b)}.camera-fallback{color:#f3f5e8}.glass-icon,.stage-progress{background:#1b241bbd;border-color:#ffffff52}
 .scan-reticle{border-color:#d5f245}.scan-reticle div{background:#232b1bdf}.scan-bottom{border-radius:25px 25px 0 0}.scan-bottom small{color:#697a2c}.ocr-result{background:#f2f5e7;color:#47543b}
 .complete-icon{background:var(--accent);color:#24291c;border-radius:50%}
