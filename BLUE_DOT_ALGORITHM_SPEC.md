@@ -1,8 +1,8 @@
 # 책길 블루도트 계산 알고리즘 명세
 
 > 대상: POSTECH 박태준학술정보관 3층 현장 UT 웹앱, AR 제거 지도 경로 버전  
-> 구현 파일: `motion.js`, `routing.js`, `app.js`  
-> 작성 기준: 2026-10-15 현재 코드
+> 구현 파일: `motion.js`, `routing.js`, `access-routing.js`, `app.js`  
+> 작성 기준: 2026-10-19 현재 코드
 
 ## 1. 목적과 범위
 
@@ -108,7 +108,7 @@ yₜ₊₁ = clamp( yₜ − cos(θₜ) × k,   0, 100 )
 
 - 내비게이션 지도에서 사용자가 실제 현재 위치를 누르면 `Pₜ`을 그 좌표로 즉시 대체하고, 그 이후 걸음 수를 `0`으로 초기화한다.
 - 재보정 없이 `12`걸음 이상 이동하면 오차 누적 가능성을 알리고 서가 표지에서 위치를 다시 찍도록 안내한다. **12걸음은 정확도 보증 한계가 아니라 UI 경고 기준**이다.
-- 사용자가 '책 서가에 도착했어요'를 누르면 현재 좌표를 해당 책의 지정 위치로 설정하고 이후 걸음 수를 `0`으로 초기화한다.
+- 사용자가 '책 서가에 도착했어요'를 누르면 현재 좌표를 그 책에서 선택된 **접근 통로 지점**으로 설정하고 이후 걸음 수를 `0`으로 초기화한다.
 - 다음 책 화면으로 넘어가면 이 좌표를 다음 탐색의 시작점으로 사용한다.
 - 출발점 또는 기준 지점을 변경하면 방향·걸음 보정값을 무효화하고 다시 보정해야 한다.
 
@@ -134,7 +134,7 @@ onEachDetectedStep:
         if candidate is outside walkable area: pauseAndRequestPositionCheck()
         else:
             blueDot = snapToWalkableCell(candidate)
-            route = astar(blueDot, nearestWalkableCell(bookPin))
+            route = astar(blueDot, confirmedShelfAccessPoint)
             redrawRouteAndNextWaypointDirection(route)
 
 onUserTapCurrentPosition(point):
