@@ -16,5 +16,7 @@ assert.equal(routing.plan(point(760, 620), shelf), null, 'a start in the central
 assert.equal(routing.plan(start, point(760, 620)), null, 'a destination in the central opening is rejected');
 assert.equal(routing.straightWalkable(point(500, 650), point(1060, 650)), false, 'walking calibration cannot cross the opening');
 assert.ok(routing.plan(point(500, 650), point(1060, 650)).distance > 560, 'opposite sides route around the opening');
+const sameCorridorCell = routing.snap(start, 28).point;
+assert.equal(routing.straightWalkable(sameCorridorCell, sameCorridorCell), true, 'staying in one walkable cell is valid');
 
 console.log('Routing checks passed');
