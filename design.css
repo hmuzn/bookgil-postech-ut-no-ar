@@ -40,6 +40,7 @@ html,body{background:#e8e9e6;color:var(--ink)}
 .page-heading{margin:12px 0 20px}.page-heading h1{font-size:29px}.back-btn{background:#f0f2ed;color:#282b25;border-radius:50%;width:40px;height:40px}
 .cart-card input{accent-color:#afdf12}.remove-btn{color:#828980}.cart-actions{margin:14px 0}
 .bottom-action{background:linear-gradient(180deg,#fbfcf800,#fbfcf8 17%);border:0;padding:20px 22px calc(20px + var(--safe-bottom))}.bottom-action strong{color:#2a2e26}
+#setupView{padding-bottom:calc(32px + var(--safe-bottom))}
 .selection-note{color:#5c6753;font-size:12px}
 .real-map,.map-frame{border:1px solid #e4e8dc;border-radius:17px;background:#f9faf7;box-shadow:0 5px 18px #1b241007}
 #setupMap.real-map{position:sticky;top:max(8px,env(safe-area-inset-top,0px));z-index:4;background:#f9faf7;box-shadow:0 14px 30px #1b24101c}
