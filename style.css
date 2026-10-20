@@ -25,3 +25,37 @@
 .map-nav-bottom{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;display:grid;gap:7px;margin-top:auto}
 .map-nav-bottom p{margin:0}.direction-instruction{font-size:17px;line-height:1.35;font-weight:850;color:var(--navy)}
 .map-nav-bottom .primary{margin-top:8px}
+.start-qr-maker{margin:12px 0 22px;padding:16px;border:1px solid #dbe6f6;border-radius:18px;background:#f5f9ff;color:#495b75}
+.start-qr-maker{display:none}
+.operator-mode .start-qr-maker{display:block}
+.start-qr-maker p{margin:0 0 12px;line-height:1.5}
+.qr-start-banner{margin:16px 0;padding:14px 16px;border:1px solid #b7d6c7;border-radius:14px;background:#ebf8ef;color:#185b36;font-weight:750;line-height:1.5}
+.operator-mode #tabbar,.operator-mode #setupView .back-btn,.operator-mode #setupView .calibration-controls,.operator-mode #setupView #calibrationStatus,.operator-mode #setupView #walkCalibrate,.operator-mode #setupView #walkStatus,.operator-mode #setupView .notice,.operator-mode #setupView .bottom-action{display:none!important}
+.participant-intro-mode #tabbar,.participant-intro-mode #setupView .back-btn,.participant-intro-mode #setupView .calibration-controls,.participant-intro-mode #setupView #calibrationStatus,.participant-intro-mode #setupView #walkCalibrate,.participant-intro-mode #setupView #walkStatus,.participant-intro-mode #setupView .notice,.participant-intro-mode #setupView .bottom-action{display:none!important}
+#beginBookSearch{margin:16px 0 24px}
+.pin-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:12px 0}
+.pin-modes button{border:1px solid #d7e2ed;border-radius:9px;background:#f4f7fc;color:#596b85;font-size:11px;font-weight:800;min-height:40px;padding:7px 4px}
+.pin-modes button.selected{border-color:#2866e6;background:#e9f1ff;color:#245bc2}
+.map-marker.shelf{background:#3c506e;font-size:15px;border-radius:8px}
+.map-marker.access-inner{background:#139b83;font-size:12px}
+.map-marker.access-outer{background:#a569cf;font-size:12px}
+.operator-books{margin:18px 0 12px;padding:15px;border:1px solid #dbe6f6;border-radius:16px;background:#fff}
+.operator-books>strong{display:block;font-size:14px;color:#173459}
+.operator-books>p{font-size:11px;color:#65758e;line-height:1.5;margin:7px 0 12px}
+.operator-book{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #e4eaf1;padding:11px 0}
+.operator-book span{font-size:12px;font-weight:750;line-height:1.4;min-width:0}
+.operator-book small{display:block;color:#687d9a;font-size:10px;margin-top:3px}
+.operator-book button{flex:none;border:1px solid #cbdaf1;background:#eef4ff;border-radius:9px;color:#2866e6;font-size:11px;font-weight:800;padding:8px}
+.start-qr-dialog{width:min(92vw,420px);max-height:90vh;overflow:auto;border:0;border-radius:24px;padding:24px;color:#183052}
+.start-qr-dialog::backdrop{background:rgba(9,22,43,.55)}
+.start-qr-dialog>p{line-height:1.5}
+.start-qr-code{display:flex;justify-content:center;margin:18px auto}
+.start-qr-code svg{width:min(65vw,260px);height:auto;max-height:260px;background:white}
+.start-qr-dialog input{width:100%;padding:10px;border:1px solid #dbe6f6;border-radius:10px;font-size:12px}
+@media print{body>.app-shell,body>dialog:not(#startQrDialog){display:none!important}#startQrDialog{display:block!important;position:static!important;width:100%;max-height:none;box-shadow:none}#closeStartQr,#copyStartQr,#printStartQr{display:none!important}.start-qr-code svg{width:65mm;max-height:none}}
+
+.tracking-setup{margin:16px 0;border:1px solid #dbe6f6;border-radius:16px;padding:14px;background:#f7faff}.tracking-setup summary{cursor:pointer;font-weight:750;color:#173354}.tracking-setup summary span{display:block;font-size:12px;font-weight:500;color:#697b91;margin-top:3px}.tracking-setup[open] summary{margin-bottom:12px}.operator-mode .tracking-setup,.participant-intro-mode .tracking-setup{display:none!important}
+
+.operator-entry{font-size:13px;color:#6d7e91;margin:8px 0 18px}.operator-entry a{color:#2866e6;font-weight:700}
+
+.pin-modes{grid-template-columns:repeat(2,1fr)}.pin-modes button{font-size:13px;min-height:46px}.alternate-access{margin:10px 0 16px;color:#62758d;font-size:13px}.alternate-access summary{cursor:pointer}.alternate-access button{margin-top:10px}
